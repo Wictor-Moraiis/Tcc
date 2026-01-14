@@ -34,7 +34,7 @@ namespace MarcenariaMorais
         /// </summary>
         private Boolean CheckPassword(string pass = "")
         {
-            if (pass != "21314151**mm") return false;
+            if (pass != "SUA_SENHA_AQUI") return false;
 
             return true;
         }
