@@ -22,10 +22,10 @@ namespace MarcenariaMorais
         public string Descricao { get; set; }
 
         // FTP config
-        private string ftpHost = "ftp.quaiati.com.br";
-        private string ftpUser = "marcenaria_morais@quaiati.com.br";
-        private string ftpPass = "21314151**mm";
-        private string ftpFolder = "/View/Catalog/img/catalog/";
+        private string ftpHost = "SEU_HOST_AQUI";
+        private string ftpUser = "SEU_USER_AQUI";
+        private string ftpPass = "SUA_SENHA_AQUI";
+        private string ftpFolder = "SUA_PASTA_AQUI";
 
         public static DataTable ListarTamanhoParaCombo()
         {
