@@ -7,7 +7,7 @@ namespace MarcenariaMorais
     public static class Criptografia
     {
         // ⚠️ MESMA CHAVE DO IMPORTADOR
-        private const string ChaveSecreta = "21314151**mm";
+        private const string ChaveSecreta = "SUA_CHAVE_AQUI";
 
         private static byte[] ObterChave()
         {
