@@ -1,0 +1,84 @@
+﻿<Page x:Class="MarcenariaMorais.Financeiro_A"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarcenariaMorais"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1366"
+      Title="Financeiro_A">
+
+    <Grid>
+        <DockPanel LastChildFill="True" 
+               HorizontalAlignment="Stretch">
+
+            <StackPanel Orientation="Vertical" 
+                    Style="{DynamicResource Form}">
+
+                <Label x:Name="l_titulo" Content="Cadastrar Registro de Transação"/>
+
+                <Grid>
+                    <Border Name="Mascara"
+                            Background="{DynamicResource Secundaria}"
+                            CornerRadius="12"/>
+
+                    <UniformGrid Columns="2">
+
+                        <UniformGrid.OpacityMask>
+                            <VisualBrush Visual="{ Binding ElementName=Mascara}"/>
+                        </UniformGrid.OpacityMask>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Descrição da transação:"/>
+                            <local:TextBoxPlaceholder x:Name="inp_desc" 
+                                      TextPlaceholder="Digite a descrição da transação" 
+                                      Style="{DynamicResource FormTextoLongo}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Valor:"/>
+                            <local:TextBoxPlaceholder x:Name="inp_valor" 
+                                      TextPlaceholder="Digite o valor da transação" 
+                                      Style="{DynamicResource FormTexto}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Tipo:"/>
+                            <local:ListBoxSelect x:Name="inp_tipo"
+                                 ItemPlaceholder="Selecione o tipo"
+                                 Style="{DynamicResource Opcoes}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Data:"/>
+                            <DatePicker x:Name="inp_data" 
+                        Style="{DynamicResource Calendario}" Template="{DynamicResource CustomDatePicker}"/>
+                        </StackPanel>
+
+                    </UniformGrid>
+
+                </Grid>
+
+                <DockPanel>
+
+                    <Button x:Name="btn_cancelar" 
+                            Style="{DynamicResource BotaoPrincipal}"
+                            Click="btn_cancelar_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="{DynamicResource IRemover}"/>
+                            <TextBlock VerticalAlignment="Center">Cancelar</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btn_salvar" 
+                            Style="{DynamicResource BotaoPrincipal}"
+                            Click="btn_salvar_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center">Confirmar</TextBlock>
+                            <Image Source="{DynamicResource IAdicionar}"/>
+                        </StackPanel>
+                    </Button>
+                </DockPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Page>

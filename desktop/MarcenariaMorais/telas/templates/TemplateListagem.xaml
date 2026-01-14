@@ -1,0 +1,88 @@
+﻿<Page x:Class="MarcenariaMorais.TemplateListagem"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarcenariaMorais"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1366"
+      Title="TemplateListagem">
+
+    <Grid>
+        <DockPanel LastChildFill="True" HorizontalAlignment="Stretch">
+            <StackPanel Style="{DynamicResource Listar}">
+
+                <Label x:Name="l_titulo" Content="Título"/>
+
+                <Grid>
+                    <Border x:Name="Mascara" Background="White" CornerRadius="12"/>
+
+                    <DockPanel x:Name="dp_BarraPesquisa" Style="{DynamicResource BarraPesquisa}">
+
+                        <DockPanel.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=Mascara}"/>
+                        </DockPanel.OpacityMask>
+
+                        <StackPanel>
+                            <local:ListBoxSelect x:Name="lbs_opcoes" 
+                                                 ItemPlaceholder="Selecione uma coluna"/>
+
+                            <Button x:Name="btn_Pesquisar" 
+                                    HorizontalAlignment="Right" 
+                                    Height="20" 
+                                    Width="20" 
+                                    Margin="0 0 0 0">
+                                <Image Source="{StaticResource IPesquisa}" Stretch="UniformToFill"/>
+                            </Button>
+                            
+                        </StackPanel>
+
+                        <TextBox x:Name="tb_Pesquisa" 
+                                 DockPanel.Dock="Left" 
+                                 Background="AliceBlue" 
+                                 MaxLength="100" 
+                                 Padding="7 0 0 0" 
+                                 VerticalAlignment="Center" 
+                                 BorderThickness="0"/>
+                    </DockPanel>
+                </Grid>
+
+                <DataGrid x:Name="dt_tabela"
+                          HeadersVisibility="Column"
+                          d:ItemsSource="{d:SampleData ItemCount=10}" 
+                          CellStyle="{StaticResource ListarCell}"/>
+                <DockPanel>
+
+                    <Button x:Name="btn_excluir"
+                            Style="{DynamicResource BotaoPrincipal}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="{DynamicResource IRemover}"/>
+                            <TextBlock VerticalAlignment="Center"><Run Text="Excluir"/></TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <Button x:Name="btn_alterar" 
+                                Style="{DynamicResource BotaoPrincipal}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center"><Run Text="Alterar"/></TextBlock>
+                                <Image Source="{DynamicResource IAdicionar}"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="btn_adicionar" 
+                                Style="{DynamicResource BotaoPrincipal}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center"><Run Text="Adicionar"/></TextBlock>
+                                <Image Source="{DynamicResource IAdicionar}"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                </DockPanel>
+
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Page>

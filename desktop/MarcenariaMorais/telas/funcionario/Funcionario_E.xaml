@@ -1,0 +1,100 @@
+﻿<Page x:Class="MarcenariaMorais.Funcionario_E"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarcenariaMorais"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1366"
+      Title="Funcionario_E">
+
+    <Grid>
+        <DockPanel LastChildFill="True" 
+           HorizontalAlignment="Stretch">
+
+            <StackPanel Orientation="Vertical" 
+                Style="{DynamicResource Form}">
+
+                <Label x:Name="l_titulo" Content="Editar Funcionário"/>
+
+                <Grid>
+                    <Border Name="Mascara"
+                    Background="{DynamicResource Secundaria}"
+                    CornerRadius="12"/>
+
+                    <UniformGrid Columns="2">
+
+                        <UniformGrid.OpacityMask>
+                            <VisualBrush Visual="{ Binding ElementName=Mascara}"/>
+                        </UniformGrid.OpacityMask>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="CPF:"/>
+                            <local:TextBoxMask x:Name="inp_cpf" 
+                                           Style="{DynamicResource TextoMascara}"
+                                           Mask="___.___.___-__"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Nome:"/>
+                            <local:TextBoxPlaceholder x:Name="inp_nome" 
+                                                  TextPlaceholder="Digite o nome do funcionário" 
+                                                  Style="{DynamicResource FormTexto}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Telefone 1:"/>
+                            <local:TextBoxMask x:Name="inp_tel1" 
+                                           Style="{DynamicResource TextoMascara}"
+                                           Mask="(__) _____-____"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Telefone 2:"/>
+                            <local:TextBoxMask x:Name="inp_tel2" 
+                                           Style="{DynamicResource TextoMascara}"
+                                           Mask="(__) _____-____"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Descrição:"/>
+                            <local:TextBoxPlaceholder x:Name="inp_desc" 
+                                                  TextPlaceholder="Digite a descrição" 
+                                                  Style="{DynamicResource FormTextoLongo}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Opções:"/>
+                            <local:ListBoxSelect x:Name="inp_cat"
+                                             ItemPlaceholder="Selecione uma categoria"
+                                             Style="{DynamicResource Opcoes}"/>
+                        </StackPanel>
+
+                    </UniformGrid>
+
+                </Grid>
+
+                <DockPanel>
+
+                    <Button x:Name="btn_cancelar" 
+                        Style="{DynamicResource BotaoPrincipal}"
+                        Click="btn_cancelar_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="{DynamicResource IRemover}"/>
+                            <TextBlock VerticalAlignment="Center">Cancelar</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btn_salvar" 
+                        Style="{DynamicResource BotaoPrincipal}"
+                        Click="btn_salvar_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center">Confirmar</TextBlock>
+                            <Image Source="{DynamicResource IAdicionar}"/>
+                        </StackPanel>
+                    </Button>
+                </DockPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Page>

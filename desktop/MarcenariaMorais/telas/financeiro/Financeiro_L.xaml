@@ -1,0 +1,149 @@
+﻿<Page x:Class="MarcenariaMorais.Financeiro_L"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarcenariaMorais" 
+      xmlns:oxy="http://oxyplot.org/wpf"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="1366"
+      Title="Financeiro_L"
+      ScrollViewer.VerticalScrollBarVisibility="Visible"
+      ScrollViewer.CanContentScroll="True"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <local:ImgPathConverter x:Key="ImgPathConverter"/>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <DockPanel LastChildFill="True">
+
+                <StackPanel Style="{DynamicResource Listar}">
+
+                    <Grid x:Name="grd_blocos" Style="{StaticResource BlocoFinan}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Margin="0 0 10 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" Background="{StaticResource Secundaria}" CornerRadius="15" Margin="0 0 0 20">
+                                <StackPanel Orientation="Vertical">
+                                    <Label>Faturamento</Label>
+                                    <TextBlock x:Name="lb_ganhos">R$ 0,00</TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Row="1" Background="{StaticResource Branco}" CornerRadius="15">
+                                <StackPanel Orientation="Vertical">
+                                    <Label>Gastos</Label>
+                                    <TextBlock x:Name="lb_gastos">R$ 0,00</TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <Border Grid.Column="1" Margin="10 0 0 0" CornerRadius="15" Background="{StaticResource PrimariaAlternativa}" Height="{Binding ActualHeight, ElementName=grd_blocos}">
+                            <StackPanel>
+                                <Label Foreground="{StaticResource Branco}" FontWeight="SemiBold">Lucro</Label>
+                                <TextBlock x:Name="lb_total" Foreground="{StaticResource Branco}" FontWeight="SemiBold" FontSize="48">R$ 0,00</TextBlock>
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+
+                    <Label x:Name="l_titulo" Content="Histórico"/>
+
+                    <Grid Style="{StaticResource BarraPesquisa}">
+                        <Border Name="Mascara"
+                            Background="White"
+                            CornerRadius="15"/>
+
+                        <DockPanel x:Name="dp_BarraPesquisa">
+
+                            <DockPanel.OpacityMask>
+                                <VisualBrush Visual="{Binding ElementName=Mascara}"/>
+                            </DockPanel.OpacityMask>
+
+                            <StackPanel>
+                                <Button x:Name="btn_Pesquisar">
+                                    <Image Source="{StaticResource IPesquisa}" Stretch="UniformToFill"/>
+                                </Button>
+                            </StackPanel>
+
+                            <local:TextBoxPlaceholder x:Name="tb_pesquisa"
+                                TextPlaceholder="Pesquisar pelo código ou a descrição"/>
+                        </DockPanel>
+                    </Grid>
+
+
+                    <DataGrid x:Name="dt_tabela" 
+                              d:ItemsSource="{d:SampleData ItemCount=5}" 
+                              CellStyle="{StaticResource ListarCell}"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              Focusable="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Código" Binding="{Binding Fin_id}" Width="*"/>
+                            <DataGridTextColumn Header="Descrição" Binding="{Binding Fin_mov_desc}" ElementStyle="{StaticResource WrapText}" Width="*"/>
+                            <DataGridTextColumn Header="Valor" Binding="{Binding Fin_mov_val, StringFormat=C, ConverterCulture='pt-BR'}" Width="*"/>
+                            <DataGridTextColumn Header="Data" Binding="{Binding Fin_data, StringFormat=dd/MM/yyyy}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <DockPanel>
+
+                        <Button x:Name="btn_excluir"
+                            Style="{DynamicResource BotaoPrincipal}"
+                            Click="btn_excluir_Click">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Image Source="{DynamicResource IRemover}"/>
+                                <TextBlock VerticalAlignment="Center"><Run Text="Excluir"/></TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                            <Button x:Name="btn_pdf"
+                                    Margin="0 10 15 0"
+                                    Style="{DynamicResource BotaoPrincipal}" 
+                                    Click="GerarPDF">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock VerticalAlignment="Center"><Run Text="Gerar PDF"/></TextBlock>
+                                    <Image Source="{DynamicResource IEditar}"/>
+                                </StackPanel>
+                            </Button>
+                            
+                            <Button x:Name="btn_alterar" 
+                                    Style="{DynamicResource BotaoPrincipal}" 
+                                    Click="btn_alterar_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock VerticalAlignment="Center"><Run Text="Alterar"/></TextBlock>
+                                    <Image Source="{DynamicResource IEditar}"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button x:Name="btn_adicionar" 
+                                    Style="{DynamicResource BotaoPrincipal}" 
+                                    Margin="15 10 0 0"
+                                    Click="btn_adicionar_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock VerticalAlignment="Center"><Run Text="Adicionar"/></TextBlock>
+                                    <Image Source="{DynamicResource IAdicionar}"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </DockPanel>
+                    <Separator Height="120" Background="Transparent"/>
+                </StackPanel>
+                <oxy:PlotView x:Name="PlotView" Visibility="Hidden"/>
+            </DockPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

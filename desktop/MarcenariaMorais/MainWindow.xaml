@@ -1,0 +1,21 @@
+﻿<Window x:Class="MarcenariaMorais.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarcenariaMorais"
+        xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
+        mc:Ignorable="d"
+        Icon="/recursos/imagens/logo/blue_logo.ico"
+        Title="Marcenaria Morais"
+        WindowState="Maximized"
+        KeyDown="Window_KeyDown"
+        Height="720" 
+        Width="1366"
+        Background="{StaticResource Preto}"
+        Loaded="Window_Loaded">
+
+    <Grid>
+        <Frame x:Name="f_main" NavigationUIVisibility="Hidden" ></Frame>
+    </Grid>
+</Window>

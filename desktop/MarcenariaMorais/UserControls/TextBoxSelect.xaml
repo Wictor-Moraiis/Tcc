@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="MarcenariaMorais.TextBoxSelect"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MarcenariaMorais"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="UserControl_Loaded">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBox x:Name="tbx_texto"
+                     Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                     HorizontalAlignment="Left"
+                     Padding="2 0 15 0"
+                     TextChanged="tbx_TextChanged"
+                     GotFocus="tbx_GotFocus"
+                     LostFocus="tbx_LostFocus"/>
+
+        <TextBlock x:Name="tbk_placeholder" 
+                    Text="{Binding TextBoxSelectPlaceholder, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                    VerticalAlignment="Top"
+                    Margin="5 1 0 0" 
+                    Opacity="0.5"
+                    IsHitTestVisible="False"
+                    Background="Transparent"/>
+
+        <Button x:Name="btn_lista"
+                    HorizontalAlignment="Right"
+                    Width="23"
+                    Margin="0 0 1 0"
+                    BorderThickness="0"
+                    Background="Transparent"
+                    Click="btn_lista_Click">
+
+            <Image Source="{DynamicResource IExpandir}"/>
+        </Button>
+
+        <Popup x:Name="po" 
+               PlacementTarget="{Binding ElementName=tbx_texto}"
+               Placement="Bottom" 
+               HorizontalOffset="0"
+               Width="{Binding ActualWidth, ElementName=tbx_texto}"
+               StaysOpen="False"
+               MaxHeight="100"
+               ScrollViewer.VerticalScrollBarVisibility="Auto"
+               ScrollViewer.CanContentScroll="True"
+               IsOpen="False" 
+               AllowsTransparency="True">
+
+            <ListBox x:Name="lb" 
+                     Width="{Binding ActualWidth, ElementName=btn_list}"
+                     SelectionChanged="lb_SelectionChanged">
+
+                <ListBoxItem>Item 1</ListBoxItem>
+                <ListBoxItem>Item 2</ListBoxItem>
+                <ListBoxItem>Item 3</ListBoxItem>
+                <ListBoxItem>Item 4</ListBoxItem>
+            </ListBox>
+        </Popup>
+    </Grid>
+</UserControl>

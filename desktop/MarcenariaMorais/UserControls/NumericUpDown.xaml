@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="MarcenariaMorais.NumericUpDown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MarcenariaMorais"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <Grid VerticalAlignment="Center"
+          HorizontalAlignment="Center">
+
+        <TextBox x:Name="tb_num" 
+                 x:FieldModifier="private"
+                 Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                 TextChanged="tb_num_TextChanged"
+                 PreviewKeyDown="tb_num_PreviewKeyDown"
+                 PreviewKeyUp="tb_num_PreviewKeyUp"
+                 Padding="0 -1 0 0">
+
+        </TextBox>
+
+        <Grid x:Name="g_botoes"
+              Margin="2"
+              VerticalAlignment="Stretch"
+              HorizontalAlignment="Right"
+              Width="25">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="btn_cima"
+                    Grid.Row="0"
+                    VerticalAlignment="Stretch"
+                    Click="btn_cima_Click">
+
+                <Image Height="auto" Source="{DynamicResource ISeta}"/>
+
+                <Button.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="BorderThickness" Value="1 1 1 0.5"/>
+                        
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5 5 0 0"/>
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </Button.Resources>
+
+            </Button>
+
+            <Button x:Name="btn_baixo" 
+                    Grid.Row="1"
+                    VerticalAlignment="Stretch"
+                    Click="btn_baixo_Click">
+
+                <Image Source="{DynamicResource ISeta}" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="180"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+
+                <Button.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="BorderThickness" Value="1 0.5 1 1"/>
+                        
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="0 0 5 5"/>
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </Button.Resources>
+
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

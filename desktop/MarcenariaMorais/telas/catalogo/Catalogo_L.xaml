@@ -1,0 +1,137 @@
+﻿<Page x:Class="MarcenariaMorais.Catalogo_L"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarcenariaMorais"
+      mc:Ignorable="d" 
+      d:DesignHeight="728" d:DesignWidth="1366"
+      Title="Catalogo_L"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <local:ImgPathConverter x:Key="ImgPathConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <DockPanel LastChildFill="True" Grid.ColumnSpan="2">
+            <StackPanel Style="{DynamicResource Listar}">
+
+                <Label x:Name="l_titulo" Content="Catálogo"/>
+
+                <Grid Style="{StaticResource BarraPesquisa}">
+                    <Border Name="Mascara"
+                        Background="White"
+                        CornerRadius="15"/>
+
+                    <DockPanel x:Name="dp_BarraPesquisa">
+
+                        <DockPanel.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=Mascara}"/>
+                        </DockPanel.OpacityMask>
+
+                        <StackPanel>
+                            <Button x:Name="btn_Pesquisar">
+                                <Image Source="{StaticResource IPesquisa}" Stretch="UniformToFill"/>
+                            </Button>
+                        </StackPanel>
+
+                        <local:TextBoxPlaceholder x:Name="tb_pesquisa"
+                            TextPlaceholder="Pesquisar pelo nome"/>
+                    </DockPanel>
+                </Grid>
+
+                <DataGrid x:Name="dt_tabela" 
+                          d:ItemsSource="{d:SampleData ItemCount=5}" 
+                          CellStyle="{StaticResource ListarCell}"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          Focusable="False">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nome" Binding="{Binding Cat_nome}" ElementStyle="{StaticResource WrapText}" Width="2*"/>
+                        <DataGridTextColumn Header="Descrição" Binding="{Binding Cat_desc}" ElementStyle="{StaticResource WrapText}" Width="6*"/>
+                        <DataGridTextColumn Header="Categoria" Binding="{Binding Cat_cate}" Width="2*"/>
+                        <DataGridTextColumn Header="Tamanho" Binding="{Binding Cat_tamanho}" Width="2*"/>
+                        <DataGridTemplateColumn Header="Imagem" Width="200" CanUserResize="False">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="PopupImagem">
+                                        <Button.Resources>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Background" Value="{StaticResource PrimariaAlternativa}"/>
+                                                <Setter Property="Foreground" Value="{StaticResource Branco}"/>
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                                <Style.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="10"/>
+                                                    </Style>
+                                                </Style.Resources>
+                                            </Style>
+                                        </Button.Resources>
+
+                                        <Grid x:Name="grd">
+                                            <TextBlock Text="Visualizar imagens"/>
+                                            <Image x:Name="img1" Visibility="Collapsed" Source="{Binding Cat_img1, Converter={StaticResource ImgPathConverter}, ConverterParameter='Catalogo'}"/>
+                                            <Image x:Name="img2" Visibility="Collapsed" Source="{Binding Cat_img2, Converter={StaticResource ImgPathConverter}, ConverterParameter='Catalogo'}"/>
+                                            <Image x:Name="img3" Visibility="Collapsed" Source="{Binding Cat_img3, Converter={StaticResource ImgPathConverter}, ConverterParameter='Catalogo'}"/>
+                                            <Image x:Name="img4" Visibility="Collapsed" Source="{Binding Cat_img4, Converter={StaticResource ImgPathConverter}, ConverterParameter='Catalogo'}"/>
+                                        </Grid>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--TODO: Ajustar as imagens!-->
+                        <!--<DataGridTemplateColumn Header="Imagens" Width="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Height="60" Width="60" Stretch="Uniform"
+                                           Source="{Binding Cat_img1, Converter={StaticResource ImgPathConverter}, ConverterParameter='Catalogo'}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>-->
+                        <!--<DataGridTextColumn Header="Valor" Binding="{Binding Fin_mov_val, StringFormat=N2}"/>-->
+                        <!--<DataGridTextColumn Header="Data" Binding="{Binding Fin_data, StringFormat='dd/MM/yyyy'}"/>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DockPanel>
+
+                    <Button x:Name="btn_excluir"
+                    Style="{DynamicResource BotaoPrincipal}"
+                    Click="btn_excluir_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="{DynamicResource IRemover}"/>
+                            <TextBlock VerticalAlignment="Center">Excluir</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <Button x:Name="btn_alterar" 
+                        Style="{DynamicResource BotaoPrincipal}" 
+                        Click="btn_alterar_Click">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center">Alterar</TextBlock>
+                                <Image Source="{DynamicResource IEditar}"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="btn_adicionar" 
+                                Style="{DynamicResource BotaoPrincipal}"
+                                Margin="15 10 0 0"
+                                Click="btn_adicionar_Click">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center">Adicionar</TextBlock>
+                                <Image Source="{DynamicResource IAdicionar}"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                </DockPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Page>

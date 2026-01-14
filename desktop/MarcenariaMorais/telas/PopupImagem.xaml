@@ -1,0 +1,115 @@
+﻿<Window x:Class="MarcenariaMorais.PopupImagem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarcenariaMorais"
+        mc:Ignorable="d"
+        Title="PopupImagem" Height="450" Width="800"
+        Closed="Window_Closed"
+        Background="{StaticResource Preto}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Imagem em destaque -->
+            <Border Grid.Column="1" Margin="10" Background="Black" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image x:Name="imgDestaque" Stretch="Uniform" />
+            </Border>
+
+            <!--Botões-->
+            <Button x:Name="btn_avancar" 
+                    Grid.Column="2"
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Center"
+                    Width="50"
+                    Height="280"
+                    Background="{StaticResource Secundaria}"
+                    Opacity="0.5"
+                    Click="btn_avancar_Click">
+
+                <Image Source="{StaticResource ISeta}" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Button>
+
+            <Button Name="btn_voltar"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center"
+                    Width="50"
+                    Height="280"
+                    Background="{StaticResource Secundaria}"
+                    Opacity="0.5"
+                    Click="btn_voltar_Click">
+
+                <Image Source="{StaticResource ISeta}" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Button>
+        </Grid>
+
+        <TextBlock x:Name="tbk_nome"
+                   Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   Foreground="{StaticResource Branco}"
+                   TextWrapping="Wrap" 
+                   FontSize="18"
+                   VerticalAlignment="Center"/>
+
+        <!-- Galeria miniaturas -->
+        <ListBox x:Name="lstImagens" 
+                 Grid.Row="2" 
+                 Margin="10"
+                 SelectedIndex="0"
+                 Background="{StaticResource Secundaria}"
+                 ItemsSource="{Binding CaminhosDasImagens}"
+                 SelectionChanged="lstImagens_SelectionChanged"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 BorderThickness="0"
+                 HorizontalContentAlignment="Center"
+                 PreviewMouseWheel="ListViewer_PreviewMoseWheel"
+                 VerticalContentAlignment="Bottom">
+
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="{StaticResource Preto}" BorderThickness="2" Margin="5">
+                        <Image Source="{Binding}" Width="90" Height="90" />
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+    </Grid>
+</Window>

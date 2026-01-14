@@ -1,0 +1,109 @@
+﻿<Page x:Class="MarcenariaMorais.Pedido_L"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarcenariaMorais"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1366"
+      Title="Pedido_L"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <DockPanel LastChildFill="True" HorizontalAlignment="Stretch">
+            <StackPanel Style="{DynamicResource Listar}">
+
+                <Label x:Name="l_titulo" Content="Pedidos"/>
+
+                <Grid Style="{StaticResource BarraPesquisa}">
+                    <Border Name="Mascara"
+                        Background="White"
+                        CornerRadius="15"/>
+
+                    <DockPanel x:Name="dp_BarraPesquisa">
+
+                        <DockPanel.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=Mascara}"/>
+                        </DockPanel.OpacityMask>
+
+                        <StackPanel>
+                            <Button x:Name="btn_Pesquisar">
+                                <Image Source="{StaticResource IPesquisa}" Stretch="UniformToFill"/>
+                            </Button>
+                        </StackPanel>
+
+                        <local:TextBoxPlaceholder x:Name="tb_pesquisa"
+                            TextPlaceholder="Pesquisar pelo código ou a descrição"/>
+                    </DockPanel>
+                </Grid>
+
+                <DataGrid x:Name="dt_tabela"
+                          d:ItemsSource="{d:SampleData ItemCount=5}" 
+                          CellStyle="{StaticResource ListarCell}"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          Focusable="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Ped_id}" />
+                        <DataGridTextColumn Header="Cliente" Binding="{Binding Cli_nome}" ElementStyle="{StaticResource WrapText}"/>
+                        <DataGridTextColumn Header="CPF do Cliente" Binding="{Binding Cli_id}" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="Descrição" Binding="{Binding Ped_desc}" ElementStyle="{StaticResource WrapText}"/>
+                        <DataGridTextColumn Header="Valor" Binding="{Binding Ped_valor, StringFormat=C, ConverterCulture='pt-BR'}" />
+                        <DataGridTextColumn Header="Realizado" Binding="{Binding Ped_realizado, StringFormat='dd/MM/yyyy'}"/>
+                        <DataGridTextColumn Header="Entrega" Binding="{Binding Ped_entrega, StringFormat='dd/MM/yyyy'}"/>
+                        <DataGridCheckBoxColumn Header="Executado" Binding="{Binding Ped_executado}" IsReadOnly="True"/>
+
+                        <!-- Colunas dos itens de estoque -->
+                        <DataGridTextColumn Header="Item 1" Binding="{Binding Estq_produto1}" />
+                        <DataGridTextColumn Header="Item 2" Binding="{Binding Estq_produto2}" />
+                        <DataGridTextColumn Header="Item 3" Binding="{Binding Estq_produto3}" />
+                        <DataGridTextColumn Header="Item 4" Binding="{Binding Estq_produto4}" />
+                        <DataGridTextColumn Header="Item 5" Binding="{Binding Estq_produto5}" />
+
+                        <DataGridTextColumn Visibility="Collapsed" Header="Item id 1" Binding="{Binding Estq_id1}" />
+                        <DataGridTextColumn Visibility="Collapsed" Header="Item id 2" Binding="{Binding Estq_id2}" />
+                        <DataGridTextColumn Visibility="Collapsed" Header="Item 3" Binding="{Binding Estq_id3}" />
+                        <DataGridTextColumn Visibility="Collapsed" Header="Item 4" Binding="{Binding Estq_id4}" />
+                        <DataGridTextColumn Visibility="Collapsed" Header="Item 5" Binding="{Binding Estq_id5}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DockPanel>
+
+                    <Button x:Name="btn_excluir"
+                            Style="{DynamicResource BotaoPrincipal}"
+                            Click="btn_excluir_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="{DynamicResource IRemover}"/>
+                            <TextBlock VerticalAlignment="Center">Excluir</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <Button x:Name="btn_alterar" 
+                                Style="{DynamicResource BotaoPrincipal}" 
+                                Click="btn_alterar_Click">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center">Alterar</TextBlock>
+                                <Image Source="{DynamicResource IEditar}"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="btn_adicionar" 
+                                Style="{DynamicResource BotaoPrincipal}"
+                                Margin="15 10 0 0"
+                                Click="btn_adicionar_Click">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center">Adicionar</TextBlock>
+                                <Image Source="{DynamicResource IAdicionar}"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Page>

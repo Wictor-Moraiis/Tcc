@@ -1,0 +1,71 @@
+﻿<Page x:Class="MarcenariaMorais.Cat_Funcionario_E"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarcenariaMorais"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1366"
+      Title="Cat_Funcionario_E">
+
+    <Grid>
+        <DockPanel LastChildFill="True" 
+       HorizontalAlignment="Stretch">
+
+            <StackPanel Orientation="Vertical" 
+            Style="{DynamicResource Form}">
+
+                <Label x:Name="l_titulo" Content="Alterar Categoria de Funcionário"/>
+
+                <Grid>
+                    <Border Name="Mascara"
+                        Background="{DynamicResource Secundaria}"
+                        CornerRadius="12"/>
+
+                    <UniformGrid Columns="2">
+
+                        <UniformGrid.OpacityMask>
+                            <VisualBrush Visual="{ Binding ElementName=Mascara}"/>
+                        </UniformGrid.OpacityMask>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Nome:"/>
+                            <local:TextBoxPlaceholder x:Name="inp_nome" 
+                                                  Style="{DynamicResource FormTexto}"
+                                                  TextPlaceholder="Digite o nome da categoria"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Salário:"/>
+                            <local:TextBoxPlaceholder x:Name="inp_salario" 
+                                             Style="{DynamicResource FormTexto}"
+                                             TextPlaceholder="Digite o valor usando . ou ,"/>
+                        </StackPanel>
+
+                    </UniformGrid>
+
+                </Grid>
+
+                <DockPanel>
+                    <Button x:Name="btn_cancelar" 
+                    Style="{DynamicResource BotaoPrincipal}"
+                    Click="btn_cancelar_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="{DynamicResource IRemover}"/>
+                            <TextBlock VerticalAlignment="Center">Cancelar</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btn_salvar" 
+                    Style="{DynamicResource BotaoPrincipal}"
+                    Click="btn_salvar_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center">Confirmar</TextBlock>
+                            <Image Source="{DynamicResource IAdicionar}"/>
+                        </StackPanel>
+                    </Button>
+                </DockPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Page>

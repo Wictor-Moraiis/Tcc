@@ -1,0 +1,102 @@
+﻿<Page x:Class="MarcenariaMorais.Catalogo_E"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarcenariaMorais"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1366"
+      Title="Catalogo_E"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <DockPanel LastChildFill="True" 
+           HorizontalAlignment="Stretch">
+
+            <StackPanel Orientation="Vertical" 
+                Style="{DynamicResource Form}">
+
+                <Label x:Name="l_titulo" Content="Editar Produto do Catálogo"/>
+
+                <Grid>
+                    <Border Name="Mascara"
+                    Background="{DynamicResource Secundaria}"
+                    CornerRadius="12"/>
+
+                    <UniformGrid Columns="2">
+
+                        <UniformGrid.OpacityMask>
+                            <VisualBrush Visual="{ Binding ElementName=Mascara}"/>
+                        </UniformGrid.OpacityMask>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Nome:"/>
+                            <local:TextBoxPlaceholder x:Name="inp_nome" 
+                                                  TextPlaceholder="Digite o nome do produto" 
+                                                  Style="{DynamicResource FormTexto}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Categoria:"/>
+                            <local:TextBoxSelect x:Name="inp_categoria" 
+     Style="{DynamicResource OpcoesText}" 
+     TextBoxSelectPlaceholder="Selecione ou digite a categoria"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Tamanho:"/>
+                            <local:TextBoxSelect x:Name="inp_tamanho"
+                                             TextBoxSelectPlaceholder="Selecione um tamanho"
+                                             Style="{DynamicResource OpcoesText}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Descrição:"/>
+                            <local:TextBoxPlaceholder x:Name="inp_descricao" 
+                                                  TextPlaceholder="Digite a descrição do produto" 
+                                                  Style="{DynamicResource FormTextoLongo}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Imagens:"/>
+                            <local:UploadImage x:Name="inp_img1" 
+                                           Style="{DynamicResource UploadImage}"/>
+                            <local:UploadImage x:Name="inp_img2" 
+                                           Style="{DynamicResource UploadImage}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <Label Content=""/>
+                            <local:UploadImage x:Name="inp_img3" 
+                                           Style="{DynamicResource UploadImage}"/>
+                            <local:UploadImage x:Name="inp_img4" 
+                                           Style="{DynamicResource UploadImage}"/>
+                        </StackPanel>
+
+                    </UniformGrid>
+
+                </Grid>
+
+                <DockPanel>
+
+                    <Button x:Name="btn_cancelar" 
+                        Style="{DynamicResource BotaoPrincipal}"
+                        Click="btn_cancelar_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="{DynamicResource IRemover}"/>
+                            <TextBlock VerticalAlignment="Center">Cancelar</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btn_salvar" 
+                        Style="{DynamicResource BotaoPrincipal}"
+                        Click="btn_salvar_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center">Confirmar</TextBlock>
+                            <Image Source="{DynamicResource IAdicionar}"/>
+                        </StackPanel>
+                    </Button>
+                </DockPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Page>

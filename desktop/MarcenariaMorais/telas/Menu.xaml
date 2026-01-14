@@ -1,0 +1,127 @@
+﻿<Page x:Class="MarcenariaMorais.Menu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarcenariaMorais"
+      mc:Ignorable="d" 
+      d:DesignHeight="728" d:DesignWidth="1366"
+      Title="Menu"
+      Background="{StaticResource PretoAlternativo}">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="{DynamicResource PadraoFundoBranco}" 
+                        TileMode="Tile"
+                        Viewport="0,0,2160,2160" 
+                        ViewportUnits="Absolute"
+                        Stretch="None"
+                        Opacity="0.075">
+                <ImageBrush.RelativeTransform>
+                    <ScaleTransform ScaleX="0.10" ScaleY="0.10"/>
+                </ImageBrush.RelativeTransform>
+            </ImageBrush>
+        </Grid.Background>
+
+        <DockPanel LastChildFill="True">
+            <!--StackPanel para menu de navegação lateral-->
+            <StackPanel DockPanel.Dock="Left"
+                        CanVerticallyScroll="True"
+                        Style="{DynamicResource MenuLateral}">
+
+                <Image x:Name="img_logo" 
+                       Source="{DynamicResource LogoBranca}" 
+                       Height="120" 
+                       Width="160"
+                       Margin="0 -25 0 0"
+                       Stretch="UniformToFill" RenderTransformOrigin="0.5,0.5">
+                </Image>
+
+                <!--StackPanel dos botões-->
+                <StackPanel x:Name="sp_botoes" 
+                            Margin="0 10 0 0" 
+                            Orientation="Vertical" 
+                            Style="{DynamicResource BotaoMenu}" 
+                            CanVerticallyScroll="True">
+
+                    <Button x:Name="btn_home" 
+                            Style="{DynamicResource BotaoMenuSelec}" 
+                            Click="btn_home_Click">
+                        <StackPanel>
+                            <Image x:Name="img_home" 
+                                   Source="{DynamicResource IPHome}"/>
+                            <TextBlock>Bem-Vindo</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btn_estoque" 
+                            Click="btn_estoque_Click">
+                        <StackPanel>
+                            <Image x:Name="img_estoque" 
+                                   Source="{StaticResource IBEstoque}"/>
+                            <TextBlock>Estoque</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btn_funcionarios" 
+                            Click="btn_funcionarios_Click">
+                        <StackPanel>
+                            <Image x:Name="img_funcionarios" 
+                                   Source="{StaticResource IBFuncionarios}"/>
+                            <TextBlock>Funcionários</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btn_clientes"
+                            Click="btn_clientes_Click">
+                        <StackPanel>
+                            <Image x:Name="img_clientes" 
+                                   Source="{StaticResource IBClientes}"/>
+                            <TextBlock>Clientes</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btn_pedidos"
+                            Click="btn_pedidos_Click">
+                        <StackPanel>
+                            <Image x:Name="img_pedidos" 
+                                   Source="{StaticResource IBPedidos}"/>
+                            <TextBlock>Pedidos</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btn_financeiro"
+                            Click="btn_financeiro_Click">
+                        <StackPanel>
+                            <Image x:Name="img_financeiro" 
+                                   Source="{StaticResource IBFinanceiro}"/>
+                            <TextBlock>Financeiro</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btn_catalogo"
+                            Click="btn_catalogo_Click">
+                        <StackPanel>
+                            <Image x:Name="img_catalogo" 
+                                   Source="{StaticResource IBCatalogo}"/>
+                            <TextBlock>Catalogo</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btn_ajuda"
+                            Click="btn_ajuda_Click">
+                        <StackPanel>
+                            <Image Source="{StaticResource IBAjuda}"/>
+                            <TextBlock>Ajuda</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+
+            </StackPanel>
+            <!--Frame para transição entre as telas-->
+            <Frame x:Name="f_telas"
+                   DockPanel.Dock="Right" ScrollViewer.CanContentScroll="True"/>
+        </DockPanel>
+    </Grid>
+</Page>

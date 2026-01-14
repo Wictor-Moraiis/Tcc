@@ -1,0 +1,102 @@
+﻿<Page x:Class="MarcenariaMorais.Cliente_L"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarcenariaMorais"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1366"
+      Title="Cliente_L"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <local:StringToLong x:Key="StringToLong"/>
+        <local:CpfFormatter x:Key="CpfFormatter"/>
+    </Page.Resources>
+
+    <Grid>
+        <DockPanel LastChildFill="True" HorizontalAlignment="Stretch">
+            <StackPanel Style="{DynamicResource Listar}">
+
+                <Label x:Name="l_titulo" Content="Cliente"/>
+
+                <Grid Style="{StaticResource BarraPesquisa}">
+                    <Border Name="Mascara"
+                        Background="White"
+                        CornerRadius="15"/>
+
+                    <DockPanel x:Name="dp_BarraPesquisa">
+
+                        <DockPanel.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=Mascara}"/>
+                        </DockPanel.OpacityMask>
+
+                        <StackPanel>
+                            <Button x:Name="btn_Pesquisar">
+                                <Image Source="{StaticResource IPesquisa}" Stretch="UniformToFill"/>
+                            </Button>
+                        </StackPanel>
+
+                        <local:TextBoxPlaceholder x:Name="tb_pesquisa"
+                            TextPlaceholder="Pesquisar pelo CPF ou nome"/>
+                    </DockPanel>
+                </Grid>
+
+                <DataGrid x:Name="dt_tabela" 
+                      CellStyle="{StaticResource ListarCell}"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      Focusable="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="CPF" Binding="{Binding Cli_cpf, Converter={StaticResource CpfFormatter}, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="Nome" Binding="{Binding Cli_nome}"/>
+                        <DataGridTextColumn Header="1º Telefone" Binding="{Binding Cli_tel1, Converter={StaticResource StringToLong}, Mode=OneWay, StringFormat={}{0:(##) #####-####}}"/>
+                        <DataGridTextColumn Header="2º Telefone" Binding="{Binding Cli_tel2, Converter={StaticResource StringToLong}, Mode=OneWay, StringFormat={}{0:(##) #####-####}}"/>
+                        <DataGridTextColumn Header="CEP" Binding="{Binding Cli_cep, Converter={StaticResource StringToLong}, Mode=TwoWay, StringFormat={}{0:#####-###}}"/>
+                        <DataGridTextColumn Header="Bairro" Binding="{Binding Cli_bairro}"/>
+                        <DataGridTextColumn Header="Rua" Binding="{Binding Cli_rua}"/>
+                        <DataGridTextColumn Header="Nº da Casa" Binding="{Binding Cli_num_casa}"/>
+                        <DataGridTextColumn Header="Complemento" Binding="{Binding Cli_complemento}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DockPanel>
+
+                    <Button x:Name="btn_excluir"
+                        Style="{DynamicResource BotaoPrincipal}"
+                        Click="btn_excluir_Click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="{DynamicResource IRemover}"/>
+                            <TextBlock VerticalAlignment="Center">Excluir</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <Button x:Name="btn_alterar" 
+                                Style="{DynamicResource BotaoPrincipal}" 
+                                Click="btn_alterar_Click">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center">Alterar</TextBlock>
+                                <Image Source="{DynamicResource IEditar}"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="btn_adicionar" 
+                                Style="{DynamicResource BotaoPrincipal}" 
+                                Margin="15 10 0 0"
+                                Click="btn_adicionar_Click">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center">Adicionar</TextBlock>
+                                <Image Source="{DynamicResource IAdicionar}"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                </DockPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Page>
