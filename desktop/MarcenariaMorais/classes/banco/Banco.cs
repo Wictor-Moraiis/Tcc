@@ -10,7 +10,7 @@ namespace MarcenariaMorais
 {
     internal class Banco
     {
-        private string connStr = "server=162.241.2.71;port=3306;user=quaiat07_marcenaria_morais;password=21314151**mm;database=quaiat07_marcenaria_morais;SslMode=None;";
+        private string connStr = "server=SEU_SERVIDOR_AQUI;port=3306;user=SEU_USER_AQUI;password=SUA_SENHA_AQUI;database=SUA_DATABASE_AQUI;SslMode=None;";
         
         public MySqlConnection Conectar()
         {
