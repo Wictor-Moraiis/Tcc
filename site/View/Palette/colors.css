@@ -1,0 +1,28 @@
+/*-------------------*/
+/* -------ROOT------ */
+/*-------------------*/
+
+:root {
+    --primary: #00011b;
+    --alt-primary: #00012A;
+    --secondary: #747372;
+    --alt-secondary: #ACABA9;
+    --accent: #7D8288;
+    --background: #000000;
+    --cards: #272727;
+    --white: #FFFFFF;
+    --gray: #ACABA9;
+    --black: #000000;
+    --error: #FF9B19;
+    --test: #9d00ff;
+}
+
+.bg-test {
+    background-color: var(--test);
+    background-image: url(./img_test.jpg);
+    background-size: cover;
+}
+
+.color-test {
+    color: var(--test);
+}
